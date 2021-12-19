@@ -1,11 +1,13 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+/* eslint-disable quotes */
+const mongoose = require("mongoose")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 const userModel = new mongoose.Schema(
   {
-    name: {
-      type: String
+    username: {
+      type: String,
+      unique: true
     },
     email: {
       type: String
@@ -19,13 +21,14 @@ const userModel = new mongoose.Schema(
     avatarUrl: {
       type: String,
       default:
-        'https://ik.imagekit.io/devchallenge/NicePng_librarian-png_3702843_zbFMB1T9sc.png?updatedAt=1634166477679'
+        "https://ik.imagekit.io/devchallenge/NicePng_librarian-png_3702843_zbFMB1T9sc.png?updatedAt=1634166477679"
     },
     avatarId: String,
     google: {
       type: Boolean,
       default: false
-    }
+    },
+    isEmailVerified: false
   },
   {
     timestamps: true
@@ -33,7 +36,7 @@ const userModel = new mongoose.Schema(
 )
 
 // Encrypt password using bcrypt
-userModel.pre('save', async function (next) {
+userModel.pre("save", async function (next) {
   const salt = await bcrypt.genSalt(10)
   if (this.password) {
     this.password = await bcrypt.hash(this.password, salt)
@@ -54,9 +57,9 @@ userModel.methods.getSignedJwtToken = function () {
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: '2days'
+      expiresIn: "2days"
     }
   )
 }
 
-module.exports = mongoose.model('User', userModel)
+module.exports = mongoose.model("User", userModel)

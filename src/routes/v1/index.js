@@ -5,6 +5,10 @@ const defaultRoute = [
   {
     path: '/auth',
     route: require('./auth.route')
+  },
+  {
+    path: '/profile',
+    route: require('./profile.route')
   }
 ]
 
