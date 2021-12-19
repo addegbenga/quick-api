@@ -17,6 +17,15 @@ exports.createLink = async (req, res) => {
     console.log(error)
   }
 }
+
+exports.getProfile = async (req, res) => {
+  try {
+    const profile = await Profile.find({ author: req.user.id })
+    return res.json(profile)
+  } catch (error) {
+    console.log(error)
+  }
+}
 exports.updateLink = async (req, res) => {
   const { ...args } = req.body
   try {
