@@ -6,7 +6,6 @@ const {
   loginUser,
   getAuthUser,
   editUser,
-  deleteLink,
   googleLogin
 } = require('../../controllers/auth.controller')
 const { auth } = require('../../middlewares/verify')
@@ -19,7 +18,5 @@ router.post('/google', googleLogin)
 router.get('/me', auth, getAuthUser)
 
 router.post('/edit', auth, editUser)
-
-router.delete('/delete', auth, deleteLink)
 
 module.exports = router
