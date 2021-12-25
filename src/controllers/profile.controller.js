@@ -77,7 +77,7 @@ exports.updateLink = async (req, res) => {
 
 exports.deleteLink = async (req, res) => {
   try {
-    await Profile.findByIdAndDelete({ author: req.user.id })
+    await Profile.findByIdAndDelete({ _id: req.body.id })
     return res.json('Deleted succesfully')
   } catch (error) {
     console.log(error)
