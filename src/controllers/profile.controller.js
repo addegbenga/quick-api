@@ -74,3 +74,12 @@ exports.updateLink = async (req, res) => {
     console.log(error)
   }
 }
+
+exports.deleteLink = async (req, res) => {
+  try {
+    await Profile.findByIdAndDelete({ author: req.user.id })
+    return res.json('Deleted succesfully')
+  } catch (error) {
+    console.log(error)
+  }
+}
