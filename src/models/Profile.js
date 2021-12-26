@@ -6,10 +6,12 @@ const profileUserSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId
     },
     title: {
-      type: String
+      type: String,
+      default: ''
     },
     linkurl: {
-      type: String
+      type: String,
+      default: ''
     },
     linkAvatar: {
       type: String
