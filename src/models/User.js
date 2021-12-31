@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
+const opts = { toJSON: { virtuals: true } }
 const userModel = new mongoose.Schema(
   {
     username: {
@@ -30,10 +31,18 @@ const userModel = new mongoose.Schema(
     },
     isEmailVerified: false
   },
+  opts,
   {
     timestamps: true
   }
 )
+
+userModel.virtual("profile", {
+  ref: "Profile",
+  localField: "_id",
+  foreignField: "author",
+  justOne: false
+})
 
 // Encrypt password using bcrypt
 userModel.pre("save", async function (next) {
