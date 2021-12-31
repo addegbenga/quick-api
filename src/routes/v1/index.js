@@ -12,7 +12,7 @@ const defaultRoute = [
   },
   {
     path: '/user',
-    route: require('./profile.route')
+    route: require('./users.route')
   }
 ]
 
