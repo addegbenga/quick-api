@@ -26,6 +26,15 @@ exports.getProfile = async (req, res) => {
     console.log(error)
   }
 }
+
+exports.getProfileByUserId = async (req, res) => {
+  try {
+    const profile = await Profile.find({ author: req.body.id })
+    return res.json(profile)
+  } catch (error) {
+    console.log(error)
+  }
+}
 exports.updateLink = async (req, res) => {
   const { ...args } = req.body
   try {

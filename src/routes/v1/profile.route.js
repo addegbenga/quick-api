@@ -4,7 +4,8 @@ const {
   createLink,
   updateLink,
   getProfile,
-  deleteLink
+  deleteLink,
+  getProfileByUserId
 } = require('../../controllers/profile.controller')
 const { auth } = require('../../middlewares/verify')
 
@@ -12,4 +13,5 @@ router.post('/edit', updateLink)
 router.post('/create', auth, createLink)
 router.get('/get_profile', auth, getProfile)
 router.delete('/delete', auth, deleteLink)
+router.post('/get_profile_by_userId', getProfileByUserId)
 module.exports = router
