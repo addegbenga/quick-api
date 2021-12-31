@@ -4,4 +4,4 @@ const {
   getUserById
 } = require('../../controllers/user.controller')
 
-router.post('/userId', getUserById)
+router.get('/:userId', getUserById)
