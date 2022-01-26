@@ -17,6 +17,9 @@ const profileUserSchema = new mongoose.Schema(
       type: Boolean,
       default: false
     },
+    test: {
+      type: String
+    },
     linkAvatar: {
       type: String
     },
