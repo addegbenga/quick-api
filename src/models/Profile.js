@@ -13,6 +13,10 @@ const profileUserSchema = new mongoose.Schema(
       type: String,
       default: ''
     },
+    published: {
+      type: Boolean,
+      default: false
+    },
     linkAvatar: {
       type: String
     },

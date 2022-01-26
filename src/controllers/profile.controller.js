@@ -51,7 +51,8 @@ exports.updateLink = async (req, res) => {
             title: args.title,
             linkurl: args.linkurl,
             bio: args.bio,
-            linkAvatar: url.url
+            linkAvatar: url.url,
+            published: args.published
           }
         },
         { new: true }
@@ -69,7 +70,8 @@ exports.updateLink = async (req, res) => {
         $set: {
           title: args.title,
           linkurl: args.linkurl,
-          bio: args.bio
+          bio: args.bio,
+          published: args.published
         }
       },
       { new: true }
