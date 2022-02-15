@@ -17,7 +17,10 @@ const userModel = new mongoose.Schema(
       type: String,
       select: false
     },
-    bio: String,
+    bio: {
+      type: String,
+      default: "my bio"
+    },
     phone: String,
     avatarUrl: {
       type: String,
