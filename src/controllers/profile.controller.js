@@ -43,11 +43,13 @@ exports.updateLink = async (req, res) => {
         file: req.files.file.data,
         fileName: req.files.file.name,
       });
+      console.log(url);
       const profile = await Profile.findOneAndUpdate(
         { _id: args.id },
         {
           $set: {
             linkAvatar: url.url,
+            linkAvatarId: url.fileId,
           },
         },
         { new: true }
@@ -85,6 +87,28 @@ exports.deleteLink = async (req, res) => {
   try {
     const deleteId = await Profile.findByIdAndDelete({ _id: req.body.id });
     return res.json(deleteId);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.deleteLinkImage = async (req, res) => {
+  try {
+    imagekit
+      .deleteFile(req.body.linkAvatarId)
+      .then((resp) => console.log(resp))
+      .catch((err) => console.log(err));
+    await Profile.findOneAndUpdate(
+      { _id: req.body.linkId },
+      {
+        $set: {
+          linkAvatar: "",
+          linkAvatarId: "",
+        },
+      },
+      { new: true }
+    );
+    return res.json("Image deleted succesfully");
   } catch (error) {
     console.log(error);
   }

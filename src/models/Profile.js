@@ -18,6 +18,9 @@ const profileUserSchema = new mongoose.Schema(
     linkAvatar: {
       type: String,
     },
+    linkAvatarId: {
+      type: String,
+    },
     priority: false,
     views: {
       type: Number,
