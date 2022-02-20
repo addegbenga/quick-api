@@ -43,7 +43,6 @@ exports.updateLink = async (req, res) => {
         file: req.files.file.data,
         fileName: req.files.file.name,
       });
-      console.log(url);
       const profile = await Profile.findOneAndUpdate(
         { _id: args.id },
         {
@@ -66,7 +65,6 @@ exports.updateLink = async (req, res) => {
           $set: {
             title: args.title,
             linkurl: args.linkurl,
-            bio: args.bio,
             published: args.published,
           },
         },
